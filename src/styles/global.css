@@ -1,0 +1,46 @@
+/* ============================================================
+   Global base — reset, document shell, safe areas
+   Component-specific rules live next to components (*.module.css)
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-ink);
+  background: var(--color-parchment);
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+/**
+ * Root page wrapper — full viewport width on all breakpoints.
+ * (No “phone frame” on desktop; mobile mockups are visual references only.)
+ */
+.shell {
+  width: 100%;
+  min-height: 100dvh;
+  position: relative;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}

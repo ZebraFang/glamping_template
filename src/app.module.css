@@ -1,0 +1,4 @@
+/* Positions absolute `Nav` relative to the hero block */
+.heroSlot {
+  position: relative;
+}

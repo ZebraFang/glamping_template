@@ -1,0 +1,39 @@
+/* ============================================================
+   Hollowfield — design tokens (colors, type, spacing)
+   Shared across components; import once from styles.css
+   ============================================================ */
+
+:root {
+  /* Brand */
+  --color-forest: #1b2621;
+  --color-forest-soft: #2a3530;
+  --color-terracotta: #c66a3f;
+  --color-terracotta-deep: #a85528;
+  --color-parchment: #f1ece4;
+  --color-parchment-warm: #ede6da;
+  --color-mist: #d9d2c5;
+  --color-ink: #1b2621;
+  --color-ink-soft: #4a5450;
+
+  /* Typography */
+  --font-display: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+
+  /* Spacing (4px grid) */
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* Radii */
+  --radius-pill: 999px;
+
+  /* Layout — full-width site; cap line length for text blocks */
+  --layout-content-max: 1200px;
+
+  /* Nav: hamburger + overlay below this; horizontal links at and above */
+  --nav-desktop-min: 900px;
+}

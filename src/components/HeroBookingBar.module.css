@@ -1,0 +1,322 @@
+/**
+ * Hero booking strip — parchment shell on forest hero.
+ * Thumbnail boxes use explicit px size so swapping in <img> later does not shift layout.
+ */
+
+.root {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  margin: 0;
+  padding-bottom: max(var(--space-6), env(safe-area-inset-bottom));
+}
+
+.bar {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+  background: var(--color-parchment);
+  color: var(--color-ink);
+  border-radius: 22px;
+  box-shadow: 0 14px 48px rgba(0, 0, 0, 0.22);
+  overflow: hidden;
+}
+
+.segment {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 4px;
+  min-width: 0;
+  flex: 1;
+  padding: 14px 16px;
+  text-align: left;
+  font-family: var(--font-body);
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.segmentMuted {
+  cursor: default;
+  opacity: 0.85;
+}
+
+.segmentMuted:disabled {
+  opacity: 0.72;
+  cursor: not-allowed;
+}
+
+.segmentLabel {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+.segmentValueDesktop {
+  display: none;
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  line-height: 1.2;
+}
+
+.tapHint {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+.segmentStayActive {
+  background: var(--color-parchment-warm);
+}
+
+.segment:focus-visible:not(:disabled) {
+  outline: 2px solid var(--color-terracotta);
+  outline-offset: -2px;
+  z-index: 1;
+}
+
+.segmentDates,
+.segmentGuests,
+.divider {
+  display: none;
+}
+
+.divider {
+  width: 1px;
+  align-self: stretch;
+  margin: 12px 0;
+  background: rgba(27, 38, 33, 0.12);
+  flex-shrink: 0;
+}
+
+.cta {
+  flex-shrink: 0;
+  align-self: stretch;
+  padding: 0 20px;
+  margin: 8px;
+  margin-left: 0;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-parchment);
+  background: var(--color-terracotta);
+  border: none;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.cta:hover {
+  background: var(--color-terracotta-deep);
+}
+
+.cta:focus-visible {
+  outline: 2px solid var(--color-forest);
+  outline-offset: 2px;
+}
+
+/* ----- Desktop only: anchored panel (see @media block below) ----- */
+.panel {
+  display: none;
+}
+
+.stayList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.stayOption {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-4);
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  border: 1px solid rgba(27, 38, 33, 0.12);
+  border-radius: 12px;
+  background: var(--color-parchment);
+  color: var(--color-ink);
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.stayOption:hover {
+  border-color: rgba(198, 106, 63, 0.45);
+  background: var(--color-parchment-warm);
+}
+
+.stayOption:focus-visible {
+  outline: 2px solid var(--color-terracotta);
+  outline-offset: 2px;
+}
+
+.stayOptionSelected {
+  border-color: var(--color-terracotta);
+  background: rgba(198, 106, 63, 0.06);
+}
+
+/* Fixed slot — match dimensions when replacing with <img width height> */
+.thumb {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--color-mist);
+}
+
+.thumbInner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--color-ink-soft);
+}
+
+.stayText {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stayName {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.stayMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stayPrice {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+.stayDetail {
+  font-size: 12px;
+  color: var(--color-ink-soft);
+}
+
+.stayCheck {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-terracotta);
+}
+
+.checkIcon {
+  width: 22px;
+  height: 22px;
+}
+
+.radioOff {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(27, 38, 33, 0.22);
+}
+
+@media (min-width: 900px) {
+  .tapHint {
+    display: none;
+  }
+
+  .segmentValueDesktop {
+    display: block;
+  }
+
+  .segmentDates,
+  .segmentGuests {
+    display: flex;
+  }
+
+  .divider {
+    display: block;
+  }
+
+  .segment {
+    padding: 16px 20px;
+  }
+
+  .cta {
+    padding: 0 28px;
+    margin: 10px 10px 10px 0;
+    font-size: 11px;
+  }
+
+  .panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(100% + 10px);
+    width: min(100%, 380px);
+    max-width: 380px;
+    padding: var(--space-4);
+    background: var(--color-parchment);
+    border-radius: 16px;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(27, 38, 33, 0.08);
+  }
+
+  .panelOpen {
+    display: block;
+  }
+
+  .thumb {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+@media (max-width: 899px) {
+  .segmentStay {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .cta {
+    margin: 8px 8px 8px 4px;
+    padding: 0 14px;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+  }
+
+}
