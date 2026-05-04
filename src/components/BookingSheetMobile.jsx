@@ -26,35 +26,47 @@ function IconCheck({ className }) {
   )
 }
 
-/** Mon-first week row labels */
 const DOW = ['M', 'T', 'W', 'T', 'F', 'S', 'S']
 
-/**
- * Static May 2026 grid (visual only). May 1 = Friday → 4 leading blanks.
- */
-function CalendarPlaceholder() {
-  const leading = 4
-  const daysInMonth = 31
+function sameDay(a, b) {
+  if (!a || !b) return false
+  return a.toDateString() === b.toDateString()
+}
+
+function CalendarGrid({ monthCursor, checkIn, checkOut, onSelectDate, isDateSelectable, onMoveMonth }) {
+  const year = monthCursor.getFullYear()
+  const month = monthCursor.getMonth()
+  const first = new Date(year, month, 1)
+  const leading = (first.getDay() + 6) % 7
+  const daysInMonth = new Date(year, month + 1, 0).getDate()
   const cells = []
   for (let i = 0; i < leading; i += 1) cells.push(null)
   for (let d = 1; d <= daysInMonth; d += 1) cells.push(d)
   while (cells.length % 7 !== 0) cells.push(null)
-  while (cells.length < 42) cells.push(null)
-
-  const cellClass = (day) => {
-    if (!day) return styles.calCell
-    if (day < 4) return `${styles.calCell} ${styles.calCellMuted}`
-    if (day === 12 || day === 15) return `${styles.calCell} ${styles.calCellEnd}`
-    if (day === 13 || day === 14) return `${styles.calCell} ${styles.calCellRange}`
-    return styles.calCell
-  }
 
   return (
     <div className={styles.placeholderBlock}>
-      <p className={styles.placeholderTitle}>May 2026</p>
-      <p className={styles.placeholderNote}>
-        Calendar preview — date selection will connect here in a later step.
-      </p>
+      <div className={styles.calHeader}>
+        <button
+          type="button"
+          className={styles.monthNavBtn}
+          onClick={() => onMoveMonth(-1)}
+          aria-label="Previous month"
+        >
+          ‹
+        </button>
+        <p className={styles.placeholderTitle}>
+          {monthCursor.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })}
+        </p>
+        <button
+          type="button"
+          className={styles.monthNavBtn}
+          onClick={() => onMoveMonth(1)}
+          aria-label="Next month"
+        >
+          ›
+        </button>
+      </div>
       <div className={styles.calGrid}>
         {DOW.map((d, i) => (
           <div key={`dow-${i}`} className={styles.calDow}>
@@ -62,9 +74,36 @@ function CalendarPlaceholder() {
           </div>
         ))}
         {cells.map((day, i) => (
-          <div key={i} className={day ? cellClass(day) : `${styles.calCell} ${styles.calCellMuted}`}>
-            {day || ''}
-          </div>
+          day ? (
+            (() => {
+              const date = new Date(year, month, day)
+              const selectable = isDateSelectable(date)
+              const isStart = sameDay(checkIn, date)
+              const isEnd = sameDay(checkOut, date)
+              const inRange = checkIn && checkOut && date > checkIn && date < checkOut
+              const className = [
+                styles.calCellBtn,
+                isStart || isEnd ? styles.calCellEnd : '',
+                inRange ? styles.calCellRange : '',
+              ]
+                .filter(Boolean)
+                .join(' ')
+              return (
+                <button
+                  key={i}
+                  type="button"
+                  className={className}
+                  onClick={() => onSelectDate(date)}
+                  disabled={!selectable}
+                  aria-pressed={Boolean(isStart || isEnd)}
+                >
+                  {day}
+                </button>
+              )
+            })()
+          ) : (
+            <span key={i} className={`${styles.calCell} ${styles.calCellMuted}`} aria-hidden />
+          )
         ))}
       </div>
     </div>
@@ -74,12 +113,12 @@ function CalendarPlaceholder() {
 /**
  * Full-viewport booking surface for narrow viewports (portaled to `document.body`).
  */
-export function BookingSheetMobile({ open, onClose, selectedId, onSelectStay, dialogId }) {
+export function BookingSheetMobile({ open, onClose, booking, dialogId }) {
   const closeBtnRef = useRef(null)
   const titleId = useId()
   const hadOpenRef = useRef(false)
 
-  const selected = HERO_STAYS.find((s) => s.id === selectedId) ?? HERO_STAYS[0]
+  const selected = HERO_STAYS.find((s) => s.id === booking.state.selectedStayId) ?? HERO_STAYS[0]
 
   useEffect(() => {
     if (!open) return undefined
@@ -135,14 +174,14 @@ export function BookingSheetMobile({ open, onClose, selectedId, onSelectStay, di
           </div>
           <ul className={styles.stayList}>
             {HERO_STAYS.map((stay) => {
-              const isSelected = stay.id === selectedId
+              const isSelected = stay.id === booking.state.selectedStayId
               return (
                 <li key={stay.id}>
                   <button
                     type="button"
                     className={`${styles.stayOption} ${isSelected ? styles.stayOptionSelected : ''}`}
                     aria-pressed={isSelected}
-                    onClick={() => onSelectStay(stay.id)}
+                    onClick={() => booking.actions.setStay(stay.id)}
                   >
                     <span className={styles.thumb} aria-hidden>
                       <span className={styles.thumbInner}>IMG</span>
@@ -175,7 +214,14 @@ export function BookingSheetMobile({ open, onClose, selectedId, onSelectStay, di
             </span>
             <span className={styles.sectionLabel}>Pick your dates</span>
           </div>
-          <CalendarPlaceholder />
+          <CalendarGrid
+            monthCursor={booking.state.monthCursor}
+            checkIn={booking.state.checkIn}
+            checkOut={booking.state.checkOut}
+            onSelectDate={booking.actions.selectDate}
+            isDateSelectable={booking.isDateSelectable}
+            onMoveMonth={booking.actions.moveMonth}
+          />
         </section>
 
         <section className={styles.section} aria-label="Who is coming">
@@ -191,21 +237,75 @@ export function BookingSheetMobile({ open, onClose, selectedId, onSelectStay, di
                 <span className={styles.guestLabel}>Adults</span>
                 <span className={styles.guestHint}>Age 13+</span>
               </div>
-              <span className={styles.guestStub}>2 · steppers later</span>
+              <div className={styles.stepper}>
+                <button
+                  type="button"
+                  className={styles.stepperBtn}
+                  onClick={() => booking.actions.nudgeGuests('adults', -1)}
+                  aria-label="Decrease adults"
+                >
+                  -
+                </button>
+                <span className={styles.stepperValue}>{booking.state.guests.adults}</span>
+                <button
+                  type="button"
+                  className={styles.stepperBtn}
+                  onClick={() => booking.actions.nudgeGuests('adults', 1)}
+                  aria-label="Increase adults"
+                >
+                  +
+                </button>
+              </div>
             </div>
             <div className={styles.guestRow}>
               <div>
                 <span className={styles.guestLabel}>Children</span>
                 <span className={styles.guestHint}>Age 2–12</span>
               </div>
-              <span className={styles.guestStub}>0</span>
+              <div className={styles.stepper}>
+                <button
+                  type="button"
+                  className={styles.stepperBtn}
+                  onClick={() => booking.actions.nudgeGuests('children', -1)}
+                  aria-label="Decrease children"
+                >
+                  -
+                </button>
+                <span className={styles.stepperValue}>{booking.state.guests.children}</span>
+                <button
+                  type="button"
+                  className={styles.stepperBtn}
+                  onClick={() => booking.actions.nudgeGuests('children', 1)}
+                  aria-label="Increase children"
+                >
+                  +
+                </button>
+              </div>
             </div>
             <div className={styles.guestRow}>
               <div>
                 <span className={styles.guestLabel}>Dogs</span>
                 <span className={styles.guestHint}>Pet-friendly stays</span>
               </div>
-              <span className={styles.guestStub}>0</span>
+              <div className={styles.stepper}>
+                <button
+                  type="button"
+                  className={styles.stepperBtn}
+                  onClick={() => booking.actions.nudgeGuests('dogs', -1)}
+                  aria-label="Decrease dogs"
+                >
+                  -
+                </button>
+                <span className={styles.stepperValue}>{booking.state.guests.dogs}</span>
+                <button
+                  type="button"
+                  className={styles.stepperBtn}
+                  onClick={() => booking.actions.nudgeGuests('dogs', 1)}
+                  aria-label="Increase dogs"
+                >
+                  +
+                </button>
+              </div>
             </div>
           </div>
           <p className={styles.policyLine}>Free cancellation up to 14 days before</p>
@@ -215,9 +315,9 @@ export function BookingSheetMobile({ open, onClose, selectedId, onSelectStay, di
       <footer className={styles.footer}>
         <div className={styles.summary}>
           <span className={styles.summaryRate}>{selected.priceLabel}</span>
-          <span className={styles.summaryLine}>3 nights · 2 guests</span>
+          <span className={styles.summaryLine}>{booking.summary.nightsLabel}</span>
         </div>
-        <button type="button" className={styles.confirmBtn} disabled>
+        <button type="button" className={styles.confirmBtn} disabled={!booking.canConfirm}>
           Confirm
         </button>
       </footer>

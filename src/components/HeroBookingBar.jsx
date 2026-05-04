@@ -3,6 +3,7 @@ import { BookingSheetMobile } from './BookingSheetMobile.jsx'
 import styles from './HeroBookingBar.module.css'
 import { HERO_STAYS } from '../data/heroStays.js'
 import { desktopNavMediaQuery } from '../constants/breakpoints.js'
+import { useBookingDemoState } from '../hooks/useBookingDemoState.js'
 
 export { HERO_STAYS }
 
@@ -45,13 +46,12 @@ function useIsDesktop() {
 export function HeroBookingBar() {
   const isDesktop = useIsDesktop()
   const [bookingOpen, setBookingOpen] = useState(false)
-  const [selectedId, setSelectedId] = useState(HERO_STAYS[0].id)
+  const booking = useBookingDemoState()
   const rootRef = useRef(null)
   const panelId = useId()
   const sheetDialogId = useId()
 
-  const selected = HERO_STAYS.find((s) => s.id === selectedId) ?? HERO_STAYS[0]
-  const staySummaryDesktop = selected.name
+  const staySummaryDesktop = booking.summary.stayName
 
   useEffect(() => {
     const mq = window.matchMedia(desktopNavMediaQuery)
@@ -105,22 +105,22 @@ export function HeroBookingBar() {
 
         <button
           type="button"
-          className={`${styles.segment} ${styles.segmentMuted} ${styles.segmentDates}`}
-          disabled
+          className={`${styles.segment} ${styles.segmentDates}`}
+          onClick={openBookingFromCta}
         >
-          <span className={styles.segmentLabel}>Add dates</span>
-          <span className={styles.segmentValueDesktop}>Add dates</span>
+          <span className={styles.segmentLabel}>Dates</span>
+          <span className={styles.segmentValueDesktop}>{booking.summary.datesLabel}</span>
         </button>
 
         <span className={styles.divider} aria-hidden />
 
         <button
           type="button"
-          className={`${styles.segment} ${styles.segmentMuted} ${styles.segmentGuests}`}
-          disabled
+          className={`${styles.segment} ${styles.segmentGuests}`}
+          onClick={openBookingFromCta}
         >
-          <span className={styles.segmentLabel}>Add guests</span>
-          <span className={styles.segmentValueDesktop}>2 adults</span>
+          <span className={styles.segmentLabel}>Guests</span>
+          <span className={styles.segmentValueDesktop}>{booking.summary.guestsLabel}</span>
         </button>
 
         <button
@@ -144,14 +144,14 @@ export function HeroBookingBar() {
         >
           <ul className={styles.stayList}>
             {HERO_STAYS.map((stay) => {
-              const isSelected = stay.id === selectedId
+              const isSelected = stay.id === booking.state.selectedStayId
               return (
                 <li key={stay.id}>
                   <button
                     type="button"
                     className={`${styles.stayOption} ${isSelected ? styles.stayOptionSelected : ''}`}
                     aria-pressed={isSelected}
-                    onClick={() => setSelectedId(stay.id)}
+                    onClick={() => booking.actions.setStay(stay.id)}
                   >
                     <span className={styles.thumb} aria-hidden>
                       <span className={styles.thumbInner}>IMG</span>
@@ -182,8 +182,7 @@ export function HeroBookingBar() {
         <BookingSheetMobile
           open={bookingOpen}
           onClose={() => setBookingOpen(false)}
-          selectedId={selectedId}
-          onSelectStay={setSelectedId}
+          booking={booking}
           dialogId={sheetDialogId}
         />
       ) : null}
