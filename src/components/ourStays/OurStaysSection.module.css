@@ -35,18 +35,12 @@
   padding: 0;
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-6);
+  gap: var(--space-8);
 }
 
 .cardSlot {
   position: relative;
   min-height: 0;
-}
-
-@media (max-width: 899px) {
-  .cardSlot:not(:first-child) {
-    margin-top: -56px;
-  }
 }
 
 @media (min-width: 900px) {
