@@ -23,6 +23,13 @@
   overflow: hidden;
 }
 
+.segmentSlot {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+}
+
 .segment {
   display: flex;
   flex-direction: column;
@@ -129,132 +136,26 @@
   outline-offset: 2px;
 }
 
-/* ----- Desktop only: anchored panel (see @media block below) ----- */
-.panel {
+/* ----- Desktop only: anchored per-step popovers ----- */
+.stepPopover {
   display: none;
 }
 
-.stayList {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
-.stayOption {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: var(--space-4);
-  width: 100%;
-  padding: var(--space-3) var(--space-4);
-  text-align: left;
-  border: 1px solid rgba(27, 38, 33, 0.12);
-  border-radius: 12px;
-  background: var(--color-parchment);
-  color: var(--color-ink);
-  cursor: pointer;
-  transition:
-    border-color 0.2s ease,
-    background 0.2s ease;
-}
-
-.stayOption:hover {
-  border-color: rgba(198, 106, 63, 0.45);
-  background: var(--color-parchment-warm);
-}
-
-.stayOption:focus-visible {
-  outline: 2px solid var(--color-terracotta);
-  outline-offset: 2px;
-}
-
-.stayOptionSelected {
-  border-color: var(--color-terracotta);
-  background: rgba(198, 106, 63, 0.06);
-}
-
-/* Fixed slot — match dimensions when replacing with <img width height> */
-.thumb {
-  width: 56px;
-  height: 56px;
-  flex-shrink: 0;
-  border-radius: 8px;
-  overflow: hidden;
-  background: var(--color-mist);
-}
-
-.thumbInner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
+.desktopValidation {
+  margin: var(--space-3) 0 0;
   font-family: var(--font-mono);
   font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  color: var(--color-ink-soft);
-}
-
-.stayText {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.stayName {
-  font-family: var(--font-body);
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-
-.stayMeta {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.stayPrice {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--color-ink);
-}
-
-.stayDetail {
-  font-size: 12px;
-  color: var(--color-ink-soft);
-}
-
-.stayCheck {
-  flex-shrink: 0;
-  width: 22px;
-  height: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-terracotta);
-}
-
-.checkIcon {
-  width: 22px;
-  height: 22px;
-}
-
-.radioOff {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(27, 38, 33, 0.22);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-parchment);
 }
 
 @media (min-width: 900px) {
+  .bar {
+    /* Desktop popovers are absolutely positioned from segment slots above the bar */
+    overflow: visible;
+  }
+
   .tapHint {
     display: none;
   }
@@ -282,27 +183,38 @@
     font-size: 11px;
   }
 
-  .panel {
+  .stepPopover {
     position: absolute;
-    left: 0;
-    right: 0;
-    top: calc(100% + 10px);
-    width: min(100%, 380px);
-    max-width: 380px;
+    bottom: calc(100% + 12px);
     padding: var(--space-4);
     background: var(--color-parchment);
     border-radius: 16px;
     box-shadow: 0 18px 50px rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(27, 38, 33, 0.08);
+    z-index: 6;
   }
 
-  .panelOpen {
+  .stayPopover {
+    left: 0;
+    width: min(460px, 78vw);
+    max-height: min(68vh, 560px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .datesPopover {
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(430px, 78vw);
+  }
+
+  .guestsPopover {
+    right: 0;
+    width: min(360px, 72vw);
+  }
+
+  .stepPopoverOpen {
     display: block;
-  }
-
-  .thumb {
-    width: 64px;
-    height: 64px;
   }
 }
 

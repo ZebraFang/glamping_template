@@ -116,6 +116,13 @@ export function useBookingDemoState() {
     rateLabel: selectedStay?.priceLabel ?? 'From £0 / night',
   }
 
+  const firstIncompleteStep = (() => {
+    if (!state.selectedStayId) return 'stay'
+    if (!state.checkIn || !state.checkOut || state.checkOut <= state.checkIn) return 'dates'
+    if (state.guests.adults < 1) return 'guests'
+    return null
+  })()
+
   const actions = {
     setStay(stayId) {
       setState((prev) => ({ ...prev, selectedStayId: stayId }))
@@ -179,6 +186,7 @@ export function useBookingDemoState() {
       checkOut: state.checkOut,
       guests: state.guests,
     }),
+    firstIncompleteStep,
     isDateSelectable: bookingGateway.isDateSelectable.bind(bookingGateway),
     actions,
     addDays,
