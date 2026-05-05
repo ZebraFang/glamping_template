@@ -21,6 +21,17 @@ function addDays(date, days) {
   return next
 }
 
+function getCurrentMonthStart() {
+  const now = new Date()
+  return new Date(now.getFullYear(), now.getMonth(), 1)
+}
+
+function clampMonthToCurrent(monthDate) {
+  const currentMonthStart = getCurrentMonthStart()
+  if (!monthDate || monthDate < currentMonthStart) return currentMonthStart
+  return new Date(monthDate.getFullYear(), monthDate.getMonth(), 1)
+}
+
 function diffNights(start, end) {
   if (!start || !end) return 0
   const msPerDay = 24 * 60 * 60 * 1000
@@ -37,7 +48,7 @@ function getInitialState() {
       children: 0,
       dogs: 0,
     },
-    monthCursor: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
+    monthCursor: getCurrentMonthStart(),
   }
 }
 
@@ -60,9 +71,7 @@ function sanitizeDraft(draft) {
       children: safeChildren,
       dogs: safeDogs,
     },
-    monthCursor: new Date(
-      (draft.monthCursor && fromIsoDate(draft.monthCursor)) || new Date(new Date().getFullYear(), new Date().getMonth(), 1),
-    ),
+    monthCursor: clampMonthToCurrent((draft.monthCursor && fromIsoDate(draft.monthCursor)) || getCurrentMonthStart()),
   }
 }
 
@@ -138,7 +147,7 @@ export function useBookingDemoState() {
     moveMonth(delta) {
       setState((prev) => ({
         ...prev,
-        monthCursor: new Date(prev.monthCursor.getFullYear(), prev.monthCursor.getMonth() + delta, 1),
+        monthCursor: clampMonthToCurrent(new Date(prev.monthCursor.getFullYear(), prev.monthCursor.getMonth() + delta, 1)),
       }))
     },
 

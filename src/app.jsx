@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Nav } from './components/Nav.jsx'
 import { Hero } from './components/Hero.jsx'
+import { useBookingShell } from './hooks/useBookingShell.js'
 import { Footer } from './components/Footer.jsx'
 import { PlaceholderSections } from './components/Placeholders.jsx'
 import { LeadDemoToast } from './components/LeadDemoToast.jsx'
@@ -12,15 +13,16 @@ import styles from './app.module.css'
  */
 export default function App() {
   const [leadDemoOpen, setLeadDemoOpen] = useState(false)
+  const bookingShell = useBookingShell()
 
   return (
     <div className="shell">
       <div className={styles.heroSlot}>
         <Nav onDemoLead={() => setLeadDemoOpen(true)} />
-        <Hero />
+        <Hero bookingShell={bookingShell} />
       </div>
 
-      <PlaceholderSections />
+      <PlaceholderSections bookingShell={bookingShell} />
       <Footer />
 
       {leadDemoOpen ? <LeadDemoToast onDismiss={() => setLeadDemoOpen(false)} /> : null}

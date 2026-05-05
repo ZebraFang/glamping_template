@@ -1,17 +1,11 @@
 import styles from './Placeholders.module.css'
+import { OurStaysSection } from './ourStays/OurStaysSection.jsx'
 
 /** Stub anchors for nav smoke-testing; replace with real sections as you build the template. */
-export function PlaceholderSections() {
+export function PlaceholderSections({ bookingShell }) {
   return (
     <main className={styles.main}>
-      <section id="stays" className={styles.sectionMuted} aria-labelledby="stays-heading">
-        <div className={styles.inner}>
-          <h2 id="stays-heading" className={styles.title}>
-            Our stays
-          </h2>
-          <p className={styles.lead}>Section placeholder</p>
-        </div>
-      </section>
+      <OurStaysSection bookingShell={bookingShell} />
       <section id="farm" className={styles.section} aria-labelledby="farm-heading">
         <div className={styles.inner}>
           <h2 id="farm-heading" className={styles.title}>

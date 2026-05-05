@@ -5,6 +5,7 @@
 
 :root {
   /* Brand */
+  --brand-accent: var(--color-terracotta);
   --color-forest: #1b2621;
   --color-forest-soft: #2a3530;
   --color-terracotta: #c66a3f;

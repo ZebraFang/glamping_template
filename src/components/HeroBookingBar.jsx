@@ -2,9 +2,8 @@ import { useEffect, useId, useRef, useState } from 'react'
 import { BookingSheetMobile } from './BookingSheetMobile.jsx'
 import { DatesSection, GuestsSection, StaySection } from './BookingFlowContent.jsx'
 import styles from './HeroBookingBar.module.css'
-import { HERO_STAYS } from '../data/heroStays.js'
 import { desktopNavMediaQuery } from '../constants/breakpoints.js'
-import { useBookingDemoState } from '../hooks/useBookingDemoState.js'
+import { HERO_STAYS } from '../data/heroStays.js'
 
 export { HERO_STAYS }
 
@@ -28,42 +27,25 @@ function useIsDesktop() {
  * Parchment booking strip.
  * — Desktop (≥900px): toggles anchored panel (full demo: stays, calendar, guests, confirm).
  * — Mobile: “Tap to plan” / “Book your escape” open the full-viewport portaled sheet (same flow).
+ *
+ * @param {{ bookingShell: import('../hooks/useBookingShell.js').BookingShellApi }} props
  */
-export function HeroBookingBar() {
+export function HeroBookingBar({ bookingShell }) {
   const isDesktop = useIsDesktop()
-  const [mobileOpen, setMobileOpen] = useState(false)
-  const [activeDesktopStep, setActiveDesktopStep] = useState(null)
-  const [desktopValidationMessage, setDesktopValidationMessage] = useState('')
-  const booking = useBookingDemoState()
+  const {
+    booking,
+    mobileOpen,
+    setMobileOpen,
+    activeDesktopStep,
+    setActiveDesktopStep,
+    desktopValidationMessage,
+    setDesktopValidationMessage,
+  } = bookingShell
   const rootRef = useRef(null)
   const panelBaseId = useId()
   const sheetDialogId = useId()
 
   const staySummaryDesktop = booking.summary.stayName
-
-  useEffect(() => {
-    const mq = window.matchMedia(desktopNavMediaQuery)
-    const closeOnBreakpointChange = () => {
-      setMobileOpen(false)
-      setActiveDesktopStep(null)
-      setDesktopValidationMessage('')
-    }
-    mq.addEventListener('change', closeOnBreakpointChange)
-    return () => mq.removeEventListener('change', closeOnBreakpointChange)
-  }, [])
-
-  useEffect(() => {
-    const open = isDesktop ? Boolean(activeDesktopStep) : mobileOpen
-    if (!open) return undefined
-    const onKeyDown = (e) => {
-      if (e.key === 'Escape') {
-        setMobileOpen(false)
-        setActiveDesktopStep(null)
-      }
-    }
-    window.addEventListener('keydown', onKeyDown)
-    return () => window.removeEventListener('keydown', onKeyDown)
-  }, [mobileOpen, activeDesktopStep, isDesktop])
 
   useEffect(() => {
     if (!activeDesktopStep || !isDesktop) return undefined
@@ -72,7 +54,7 @@ export function HeroBookingBar() {
     }
     document.addEventListener('pointerdown', onPointerDown, true)
     return () => document.removeEventListener('pointerdown', onPointerDown, true)
-  }, [activeDesktopStep, isDesktop])
+  }, [activeDesktopStep, isDesktop, setActiveDesktopStep])
 
   const toggleDesktopStep = (step) =>
     setActiveDesktopStep((current) => {
@@ -193,7 +175,10 @@ export function HeroBookingBar() {
       {!isDesktop ? (
         <BookingSheetMobile
           open={mobileOpen}
-          onClose={() => setMobileOpen(false)}
+          onClose={() => {
+            setMobileOpen(false)
+            setDesktopValidationMessage('')
+          }}
           booking={booking}
           dialogId={sheetDialogId}
         />

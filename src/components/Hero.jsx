@@ -4,8 +4,10 @@ import { HeroBookingBar } from './HeroBookingBar.jsx'
 /**
  * Marketing hero: forest field, headline, lead link, and booking strip.
  * {@link Nav} overlays the top; this block keeps `position: relative` for stacking context.
+ *
+ * @param {{ bookingShell: import('../hooks/useBookingShell.js').BookingShellApi }} props
  */
-export function Hero() {
+export function Hero({ bookingShell }) {
   return (
     <section className={styles.hero} aria-labelledby="hero-heading">
       {/* Reserved full-bleed media layer — fixed min-height avoids CLS when a photo is added */}
@@ -39,7 +41,7 @@ export function Hero() {
           </a>
         </div>
 
-        <HeroBookingBar />
+        <HeroBookingBar bookingShell={bookingShell} />
       </div>
     </section>
   )

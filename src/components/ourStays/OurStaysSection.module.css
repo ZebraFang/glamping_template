@@ -1,0 +1,62 @@
+.section {
+  padding: 48px var(--space-6);
+  background: var(--color-parchment-warm);
+}
+
+.inner {
+  max-width: var(--layout-content-max);
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: var(--space-8);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(26px, 4vw, 34px);
+  color: var(--color-ink);
+}
+
+.subtitle {
+  margin: var(--space-3) 0 0;
+  max-width: 42rem;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--color-ink-soft);
+}
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+.cardSlot {
+  position: relative;
+  min-height: 0;
+}
+
+@media (max-width: 899px) {
+  .cardSlot:not(:first-child) {
+    margin-top: -56px;
+  }
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    gap: var(--space-6);
+  }
+
+  .cardSlot:not(:first-child) {
+    margin-top: 0;
+  }
+}

@@ -37,6 +37,10 @@ body {
   position: relative;
 }
 
+.font-mono {
+  font-family: var(--font-mono);
+}
+
 button {
   font-family: inherit;
   cursor: pointer;
