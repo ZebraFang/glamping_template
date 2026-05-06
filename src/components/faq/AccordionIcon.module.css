@@ -1,0 +1,25 @@
+.wrap {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  color: var(--color-ink-soft);
+  transition: transform 300ms ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wrap {
+    transition: none;
+  }
+}
+
+.wrapExpanded {
+  transform: rotate(45deg);
+}
+
+.svg {
+  width: 18px;
+  height: 18px;
+}

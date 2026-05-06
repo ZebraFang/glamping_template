@@ -1,0 +1,152 @@
+.card {
+  height: 100%;
+  min-height: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(27, 38, 33, 0.08);
+  background: var(--color-parchment);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.cardFeatured {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.featuredShell {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  min-height: min(72vw, 420px);
+  overflow: hidden;
+}
+
+.featuredOverlay {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(27, 38, 33, 0.88) 0%,
+    rgba(27, 38, 33, 0.35) 42%,
+    transparent 72%
+  );
+}
+
+.featuredCopy {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.distance {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: rgba(241, 236, 228, 0.85);
+}
+
+.headlineFeatured {
+  margin: 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(22px, 2.8vw, 28px);
+  line-height: 1.2;
+  color: var(--color-parchment);
+}
+
+.sentenceFeatured {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.5;
+  color: rgba(241, 236, 228, 0.92);
+}
+
+.cardStandard {
+  display: flex;
+  flex-direction: column;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  flex: 1;
+}
+
+.headline {
+  margin: 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.25;
+  color: var(--color-ink);
+}
+
+.cardStandard .distance {
+  color: var(--color-ink-soft);
+}
+
+.sentence {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+  flex: 1;
+}
+
+.action {
+  margin-top: var(--space-2);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-terracotta-deep);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  align-self: flex-start;
+}
+
+.action:focus-visible {
+  outline: 2px solid var(--brand-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.featuredCopy .action {
+  color: var(--color-parchment);
+  text-decoration-color: rgba(241, 236, 228, 0.6);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .action:hover {
+    color: var(--color-terracotta);
+  }
+
+  .featuredCopy .action:hover {
+    color: #fff;
+  }
+}
+
+@media (max-width: 899px) {
+  .featuredOverlay {
+    background: linear-gradient(
+      to top,
+      rgba(27, 38, 33, 0.92) 0%,
+      rgba(27, 38, 33, 0.5) 30%,
+      transparent 70%
+    );
+  }
+}

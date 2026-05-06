@@ -1,0 +1,125 @@
+.block {
+  margin-top: var(--space-8);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-mist);
+}
+
+.heading {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(22px, 3vw, 28px);
+  color: var(--color-ink);
+}
+
+.lead {
+  margin: 0 0 var(--space-6);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--color-ink-soft);
+  max-width: 40rem;
+}
+
+/* Mobile: segmented control */
+.toggleRow {
+  display: flex;
+  margin-bottom: var(--space-5);
+}
+
+@media (min-width: 900px) {
+  .toggleRow {
+    display: none;
+  }
+}
+
+.toggleBtn {
+  flex: 1;
+  padding: 12px 16px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-ink-soft);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+}
+
+.toggleBtnActive {
+  color: var(--color-ink);
+  border-bottom-color: var(--color-terracotta);
+}
+
+.toggleBtn:focus-visible {
+  outline: 2px solid var(--brand-accent);
+  outline-offset: 2px;
+}
+
+.mobileList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 900px) {
+  .mobileList {
+    display: none;
+  }
+}
+
+.mobileList li {
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--color-mist);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--color-ink);
+}
+
+.mobileList li:last-child {
+  border-bottom: none;
+}
+
+/* Desktop: paired columns */
+.desktopGrid {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .desktopGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--space-8);
+    row-gap: 0;
+  }
+}
+
+.colHead {
+  margin: 0 0 var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-mist);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+.row {
+  display: contents;
+}
+
+.cell {
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--color-mist);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--color-ink);
+}
+
+.cellMuted {
+  color: var(--color-ink-soft);
+}

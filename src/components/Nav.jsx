@@ -15,7 +15,7 @@ function IconClose() {
 const DEFAULT_LINKS = [
   { href: '#stays', label: 'Our Stays' },
   { href: '#farm', label: 'The Farm' },
-  { href: '#stories', label: 'Stories' },
+  { href: '#faq', label: 'FAQ' },
   { href: '#map', label: 'Map' },
   { href: '#book', label: 'Book', cta: true },
 ]

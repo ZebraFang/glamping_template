@@ -36,7 +36,7 @@ export function Hero({ bookingShell }) {
             </p>
           </div>
 
-          <a className={styles.leadLink} href="#stories">
+          <a className={styles.leadLink} href="#faq">
             Get the Hidden Farm Walks guide — 10% off
           </a>
         </div>

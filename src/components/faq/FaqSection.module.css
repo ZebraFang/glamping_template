@@ -1,0 +1,30 @@
+.section {
+  padding: 48px var(--space-6);
+  background: var(--color-parchment-warm);
+}
+
+.inner {
+  max-width: var(--layout-content-max);
+  margin: 0 auto;
+}
+
+.headerBlock {
+  margin-bottom: var(--space-6);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(28px, 4vw, 38px);
+  color: var(--color-ink);
+}
+
+.subtitle {
+  margin: var(--space-3) 0 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+  font-style: italic;
+}
