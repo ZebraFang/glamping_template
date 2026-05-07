@@ -17,13 +17,14 @@ export default function App() {
 
   return (
     <div className="shell">
+      <div id="site-top" tabIndex={-1} />
       <div className={styles.heroSlot}>
         <Nav onDemoLead={() => setLeadDemoOpen(true)} />
         <Hero bookingShell={bookingShell} />
       </div>
 
       <PlaceholderSections bookingShell={bookingShell} />
-      <Footer />
+      <Footer bookingShell={bookingShell} />
 
       {leadDemoOpen ? <LeadDemoToast onDismiss={() => setLeadDemoOpen(false)} /> : null}
     </div>

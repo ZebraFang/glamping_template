@@ -1,9 +1,18 @@
-import styles from './Footer.module.css'
+import { PreFooterCta } from './footer/PreFooterCta.jsx'
+import { InstagramStrip } from './footer/InstagramStrip.jsx'
+import { SiteFooter } from './footer/SiteFooter.jsx'
 
-export function Footer() {
+/**
+ * Pre-footer CTA, Instagram strip, and core site footer.
+ *
+ * @param {{ bookingShell: import('../hooks/useBookingShell.js').BookingShellApi }} props
+ */
+export function Footer({ bookingShell }) {
   return (
-    <footer className={styles.footer}>
-      <div className={styles.inner}>Hollowfield — template shell</div>
-    </footer>
+    <>
+      <PreFooterCta bookingShell={bookingShell} />
+      <InstagramStrip />
+      <SiteFooter />
+    </>
   )
 }

@@ -11,6 +11,8 @@
   --color-terracotta: #c66a3f;
   --color-terracotta-deep: #a85528;
   --color-parchment: #f1ece4;
+  /** Footer body text on forest — slightly brighter than standard parchment */
+  --color-old-parchment: #f9f7f2;
   --color-parchment-warm: #ede6da;
   --color-mist: #d9d2c5;
   --color-ink: #1b2621;
@@ -34,6 +36,9 @@
 
   /* Layout — full-width site; cap line length for text blocks */
   --layout-content-max: 1200px;
+
+  /** Reserve space above sticky mobile CTAs / browser chrome */
+  --footer-sticky-safe: 100px;
 
   /* Nav: hamburger + overlay below this; horizontal links at and above */
   --nav-desktop-min: 900px;

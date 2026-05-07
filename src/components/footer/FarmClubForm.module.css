@@ -1,0 +1,115 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-terracotta);
+}
+
+.description {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(249, 247, 242, 0.82);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+@media (min-width: 600px) {
+  .form {
+    flex-direction: row;
+    align-items: stretch;
+  }
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(249, 247, 242, 0.22);
+  background: rgba(27, 38, 33, 0.35);
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--color-old-parchment);
+}
+
+.input::placeholder {
+  color: rgba(249, 247, 242, 0.45);
+}
+
+.input:focus-visible {
+  outline: 2px solid var(--brand-accent);
+  outline-offset: 2px;
+}
+
+.submit {
+  flex-shrink: 0;
+  padding: 12px 22px;
+  border-radius: 999px;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-forest);
+  background: var(--color-terracotta);
+  cursor: pointer;
+}
+
+.submit:focus-visible {
+  outline: 2px solid var(--brand-accent);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .submit:hover {
+    background: var(--color-terracotta-deep);
+  }
+}
+
+.error {
+  margin: 0;
+  font-size: 13px;
+  color: #f0b8a8;
+}
+
+.success {
+  animation: farmClubFade 0.35s ease;
+}
+
+@keyframes farmClubFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.successTitle {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--color-old-parchment);
+}
+
+.successBody {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: rgba(249, 247, 242, 0.85);
+}
