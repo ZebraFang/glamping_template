@@ -2,7 +2,16 @@
  * Footer & pre-footer copy — centralised for easy updates.
  * Replace `#` hrefs when real pages exist.
  */
+import igCoupleHappy from '../images/insta-couple-happy.jpg'
+import igDeckHappy from '../images/insta-deck-happy.jpg'
+import igDogHay from '../images/insta-dog-hay.jpg'
+import igHappyGoat from '../images/insta-happy-goat.jpg'
+import igWine from '../images/insta-wine.jpg'
+import igYurt from '../images/insta-yurt.jpg'
 import { FARM_DIRECTIONS } from './farmMap.js'
+
+/** Point every tile at your real Instagram profile (or remove `INSTAGRAM_PROFILE_URL` usage below). */
+export const INSTAGRAM_PROFILE_URL = 'https://www.instagram.com/'
 
 export const PRE_FOOTER = {
   titleLine1: 'The stars are waiting.',
@@ -74,12 +83,49 @@ export const FARM_CLUB = {
   successBody: 'Check your inbox.',
 }
 
-/** Instagram strip — swap imageSrc when connecting Graph API or static assets */
+/**
+ * Instagram strip — static tiles until you wire Meta Graph API or an embed.
+ *
+ * How to change photos: import from `src/images/` (Vite resolves hashed URLs) and set `imageSrc`.
+ * Or put files in `/public` and use `imageSrc: '/your-file.jpg'` (no import).
+ *
+ * How to change links: edit {@link INSTAGRAM_PROFILE_URL} or set per-tile `href` (e.g. deep-link a post).
+ */
 export const INSTAGRAM_PLACEHOLDERS = [
-  { id: 'ig-1', imageSrc: '', href: 'https://www.instagram.com/', alt: 'Recent farm photo 1' },
-  { id: 'ig-2', imageSrc: '', href: 'https://www.instagram.com/', alt: 'Recent farm photo 2' },
-  { id: 'ig-3', imageSrc: '', href: 'https://www.instagram.com/', alt: 'Recent farm photo 3' },
-  { id: 'ig-4', imageSrc: '', href: 'https://www.instagram.com/', alt: 'Recent farm photo 4' },
-  { id: 'ig-5', imageSrc: '', href: 'https://www.instagram.com/', alt: 'Recent farm photo 5' },
-  { id: 'ig-6', imageSrc: '', href: 'https://www.instagram.com/', alt: 'Recent farm photo 6' },
+  {
+    id: 'ig-1',
+    imageSrc: igHappyGoat,
+    href: INSTAGRAM_PROFILE_URL,
+    alt: 'Goat on the farm at Hollowfield',
+  },
+  {
+    id: 'ig-2',
+    imageSrc: igWine,
+    href: INSTAGRAM_PROFILE_URL,
+    alt: 'Relaxing with a drink after a day in the Yorkshire countryside',
+  },
+  {
+    id: 'ig-3',
+    imageSrc: igYurt,
+    href: INSTAGRAM_PROFILE_URL,
+    alt: 'Glamping accommodation nestled in the landscape',
+  },
+  {
+    id: 'ig-4',
+    imageSrc: igDeckHappy,
+    href: INSTAGRAM_PROFILE_URL,
+    alt: 'Guests enjoying morning coffee on the deck',
+  },
+  {
+    id: 'ig-5',
+    imageSrc: igCoupleHappy,
+    href: INSTAGRAM_PROFILE_URL,
+    alt: 'Guests smiling outside their stay',
+  },
+  {
+    id: 'ig-6',
+    imageSrc: igDogHay,
+    href: INSTAGRAM_PROFILE_URL,
+    alt: 'Dog beside hay bales on the farm',
+  },
 ]

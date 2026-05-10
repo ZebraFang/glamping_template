@@ -1,7 +1,11 @@
 import { PRE_FOOTER } from '../../data/footerContent.js'
+import preFooterPhoto from '../../images/stars.jpg'
 import styles from './PreFooterCta.module.css'
 
 const SCROLL_THEN_OPEN_MS = 480
+
+/** Intrinsic dims for the asset — slot aspect-ratio handles layout; this hints decode/size to the browser. */
+const PRE_FOOTER_IMG_DIM = { w: 1600, h: 900 }
 
 /**
  * @param {{ bookingShell: import('../../hooks/useBookingShell.js').BookingShellApi }} props
@@ -18,9 +22,16 @@ export function PreFooterCta({ bookingShell }) {
     <section className={styles.section} aria-labelledby="pre-footer-heading">
       <div className={styles.inner}>
         <div className={styles.media}>
-          <p className={styles.mediaCue} aria-hidden>
-            IMG / Farm at dusk · hut lights · placeholder for photography
-          </p>
+          <img
+            className={styles.photo}
+            src={preFooterPhoto}
+            alt="Golden-hour light over the Yorkshire countryside near Hollowfield"
+            width={PRE_FOOTER_IMG_DIM.w}
+            height={PRE_FOOTER_IMG_DIM.h}
+            loading="lazy"
+            decoding="async"
+            fetchPriority="low"
+          />
           <div className={styles.overlay}>
             <h2 id="pre-footer-heading" className={styles.headline}>
               {PRE_FOOTER.titleLine1}
