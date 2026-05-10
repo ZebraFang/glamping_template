@@ -117,8 +117,8 @@ export function StayImageSlider({ slides, badge, stayLabel, onOpenDetail }) {
                       height={1000}
                       sizes="(min-width: 900px) 33vw, 100vw"
                       decoding="async"
-                      loading={i === 0 ? 'eager' : 'lazy'}
-                      fetchPriority={i === 0 ? 'high' : undefined}
+                      loading="lazy"
+                      fetchPriority="low"
                       onLoad={() =>
                         setLoadedMap((m) => {
                           if (m[i]) return m

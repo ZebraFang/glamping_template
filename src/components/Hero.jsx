@@ -1,7 +1,7 @@
 import styles from './Hero.module.css'
 import { HeroBookingBar } from './HeroBookingBar.jsx'
 import { MediaSlot } from './farm/MediaSlot.jsx'
-import heroImage from '../images/golden-hour-yorkshire-two.jpg'
+import heroImage from '../images/golden-hour-yorkshire-two.avif'
 
 /** 
  * Marketing hero: forest field, headline, lead link, and booking strip.

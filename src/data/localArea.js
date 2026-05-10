@@ -135,7 +135,7 @@ export const ACTIVITIES = [
     action: { label: 'VIEW EVENING LOOP →', href: '#map', external: false },
     featured: false,
     mediaCue: 'IMG · Footpath · Dusk silhouette',
-    imageUrl: 'src/images/dusty-footpath.png',
+    imageUrl: 'src/images/dusty-footpath.avif',
   },
   {
     id: 'village-shop',
