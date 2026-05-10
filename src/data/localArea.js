@@ -10,10 +10,15 @@
  *   pillar: PillarId;
  *   headline: string;
  *   sentence: string;
+ *   story?: string;
+ *   breadcrumb?: string;
+ *   meta?: string[];
+ *   related?: { label: string; href: string; external?: boolean };
  *   distanceLabel: string;
  *   action: { label: string; href: string; external?: boolean };
  *   featured?: boolean;
  *   mediaCue: string;
+ *   imageUrl: string;
  * }} LocalActivity
  */
 
@@ -24,6 +29,7 @@
  *   months: number[];
  *   headline: string;
  *   body: string;
+ *   imageUrl: string;
  * }} SeasonEntry
  */
 
@@ -42,10 +48,16 @@ export const ACTIVITIES = [
     headline: 'Ridge walk · Yorkshire Vales',
     sentence:
       'Footsteps from your door — hedgerow paths open onto a long view of the Vales, with only skylarks for company.',
+    story:
+      'Leave the gate and take the old ridge line north where dry-stone walls frame the valley. In clear light, the route opens to layered views across the Vales and a long quiet return through hedgerow shade.',
+    breadcrumb: 'Beyond the hut / Hiking / Ridge trails',
+    meta: ['0.2 km from hut', '45 min loop', 'Moderate underfoot', 'Best at dusk'],
+    related: { label: 'Pair with: Durham Ox lunch', href: '#farm', external: false },
     distanceLabel: '0.2 KM FROM HUT',
     action: { label: 'VIEW TRAIL MAP →', href: '#map', external: false },
     featured: true,
     mediaCue: 'IMG · Drone · Farm trails & dry-stone walls',
+    imageUrl: 'src/images/golden-hour-yorkshire.jpg',
   },
   {
     id: 'durham-ox',
@@ -53,10 +65,16 @@ export const ACTIVITIES = [
     headline: 'The Durham Ox',
     sentence:
       'An award-winning gastro pub with roaring fires and a welcome as warm as the hearth.',
+    story:
+      'A classic post-walk stop with seasonal plates, local ales, and a dining room that feels settled and unhurried. Book early for weekend evenings, then stroll back under dark-sky lanes to the farm.',
+    breadcrumb: 'Beyond the hut / Dining / Village table',
+    meta: ['3.4 km from hut', '20 min walk', 'Booking advised', 'Family friendly'],
+    related: { label: 'Read full village food guide', href: '#stories', external: false },
     distanceLabel: '3.4 KM FROM HUT',
     action: { label: 'VIEW WALK TO PUB →', href: 'https://www.google.com/maps', external: true },
     featured: true,
     mediaCue: 'IMG · Pub interior · Pie & hearth',
+    imageUrl: 'src/images/durham-ox-pub.png',
   },
   {
     id: 'lambing-spring',
@@ -64,10 +82,16 @@ export const ACTIVITIES = [
     headline: 'Lambing mornings',
     sentence:
       'Spring brings lambs in the next field — quiet viewing from the fence line, no circus, just real farm rhythm.',
+    story:
+      'During lambing season, mornings begin with soft calls from the lower pasture and slow farm rounds before breakfast. Guests can watch from marked fence lines, guided by timings that keep the flock calm.',
+    breadcrumb: 'Beyond the hut / Farm life / Spring season',
+    meta: ['On site', 'Spring mornings', 'Quiet viewing only', 'Weather dependent'],
+    related: { label: 'Read the farm seasons journal', href: '#farm', external: false },
     distanceLabel: 'ON SITE',
     action: { label: 'READ FARM SEASONS →', href: '#farm', external: false },
     featured: true,
     mediaCue: 'IMG · Lamb close-up · Morning mist',
+    imageUrl: 'src/images/lambs.png',
   },
   {
     id: 'bluebell-wood',
@@ -78,6 +102,7 @@ export const ACTIVITIES = [
     action: { label: 'OPEN ROUTE PDF →', href: '#map', external: false },
     featured: false,
     mediaCue: 'IMG · Bluebell carpet · Oak trunks',
+    imageUrl: 'src/images/bluebells.png',
   },
   {
     id: 'breakfast-hamper',
@@ -88,6 +113,7 @@ export const ACTIVITIES = [
     action: { label: "SEE WHAT'S INSIDE →", href: '#stays', external: false },
     featured: false,
     mediaCue: 'IMG · Hamper · Linen & preserves',
+    imageUrl: 'src/images/breakfast-hamper.png',
   },
   {
     id: 'wildflower-meadow',
@@ -98,6 +124,7 @@ export const ACTIVITIES = [
     action: { label: 'VIEW MEADOW MAP →', href: '#map', external: false },
     featured: false,
     mediaCue: 'IMG · Meadow · Golden hour',
+    imageUrl: 'src/images/wildflower-meadow.png',
   },
   {
     id: 'dusk-footpath',
@@ -108,6 +135,7 @@ export const ACTIVITIES = [
     action: { label: 'VIEW EVENING LOOP →', href: '#map', external: false },
     featured: false,
     mediaCue: 'IMG · Footpath · Dusk silhouette',
+    imageUrl: 'src/images/dusty-footpath.png',
   },
   {
     id: 'village-shop',
@@ -118,6 +146,7 @@ export const ACTIVITIES = [
     action: { label: 'DIRECTIONS →', href: 'https://www.google.com/maps', external: true },
     featured: false,
     mediaCue: 'IMG · Honesty stall · Jars & greens',
+    imageUrl: 'src/images/veg-table.png',
   },
   {
     id: 'winter-stargaze',
@@ -128,6 +157,7 @@ export const ACTIVITIES = [
     action: { label: 'DARK-SKY TIPS →', href: '#faq', external: false },
     featured: false,
     mediaCue: 'IMG · Frosty field · Chimney smoke',
+    imageUrl: 'src/images/Yorkshire-vales.png',
   },
 ]
 

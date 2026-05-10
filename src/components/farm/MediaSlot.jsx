@@ -34,7 +34,8 @@ export function MediaSlot({ variant, imageSrc, imageAlt = '', mediaCue, classNam
           alt={imageAlt}
           width={dim.w}
           height={dim.h}
-          loading="lazy"
+          fetchPriority={variant === 'hero' ? 'high' : 'auto'}
+          loading={variant === 'hero' ? 'eager' : 'lazy'}
           decoding="async"
         />
       ) : (

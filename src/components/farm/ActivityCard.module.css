@@ -17,8 +17,8 @@
 .featuredShell {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3;
-  min-height: min(72vw, 420px);
+  min-height: min(78vw, 520px);
+  height: 100%;
   overflow: hidden;
 }
 
@@ -40,9 +40,25 @@
   right: 0;
   bottom: 0;
   padding: var(--space-5);
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(210px, 0.7fr);
+  gap: var(--space-6);
+  align-items: end;
+}
+
+.featuredMain {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
+}
+
+.breadcrumb {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(241, 236, 228, 0.68);
 }
 
 .distance {
@@ -70,6 +86,62 @@
   font-size: 15px;
   line-height: 1.5;
   color: rgba(241, 236, 228, 0.92);
+}
+
+.storyFeatured {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.55;
+  color: rgba(241, 236, 228, 0.9);
+  max-width: 56ch;
+}
+
+.featuredMeta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  align-self: end;
+  justify-self: end;
+  padding: var(--space-3) var(--space-4);
+  border-radius: 12px;
+  border: 1px solid rgba(241, 236, 228, 0.18);
+  background: rgba(27, 38, 33, 0.32);
+  backdrop-filter: blur(2px);
+  min-width: 210px;
+}
+
+.metaList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.metaList li {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(241, 236, 228, 0.88);
+}
+
+.relatedLink {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(241, 236, 228, 0.9);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.relatedLink:focus-visible {
+  outline: 2px solid rgba(241, 236, 228, 0.9);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 .cardStandard {
@@ -128,6 +200,9 @@
 .featuredCopy .action {
   color: var(--color-parchment);
   text-decoration-color: rgba(241, 236, 228, 0.6);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -138,9 +213,23 @@
   .featuredCopy .action:hover {
     color: #fff;
   }
+
+  .relatedLink:hover {
+    color: #fff;
+  }
 }
 
 @media (max-width: 899px) {
+  .featuredCopy {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  .featuredMeta {
+    justify-self: stretch;
+    min-width: 0;
+  }
+
   .featuredOverlay {
     background: linear-gradient(
       to top,

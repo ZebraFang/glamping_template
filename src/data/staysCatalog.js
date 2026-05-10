@@ -2,6 +2,16 @@
  * Full stay catalogue — marketing cards, modal, and hero booking list share IDs & core labels.
  */
 
+import peacockOne from '../images/the-peacock.png'
+import peacockTwo from '../images/Wooden-hot-tub.jpg'
+import peacockThree from '../images/shepherd-hut.jpg'
+import foxOne from '../images/safari-hut.jpg'
+import foxTwo from '../images/safari-tent-internal.jpg'
+import foxThree from '../images/safari-hut-two.jpg'
+import hareOne from '../images/Wooden-cottage.jpg'
+import hareTwo from '../images/Wooden-cottage-internal.jpg'
+import hareThree from '../images/reading-nook.jpg'
+
 /** @typedef {{ src: string; alt: string; thumbSrc?: string }} StayGallerySlide */
 
 /** @typedef {{ iconId: string; label: string }} StayFeature */
@@ -35,15 +45,15 @@ export const STAYS_CATALOG = [
       'Wake to birdsong and oak-panelled warmth. The Peacock was crafted for slow mornings: stove-lit corners, a deep soak under open sky, and nothing but pasture beyond your deck. This is the hut guests book twice.',
     gallery: [
       {
-        src: '',
+        src: peacockOne,
         alt: "Interior view of The Peacock shepherd's hut at sunset with stove glow",
       },
       {
-        src: '',
+        src: peacockTwo,
         alt: 'Wood-fired hot tub steam rising beside The Peacock hut at dusk',
       },
       {
-        src: '',
+        src: peacockThree,
         alt: 'King bed with linen and skylight in The Peacock hut',
       },
     ],
@@ -80,11 +90,11 @@ export const STAYS_CATALOG = [
       'The Fox trades walls for breeze. Zip open the canvas to hear the farm waking up, brew tea on your deck, then wander footpaths before anyone else is up. Romantic, airy, and unexpectedly plush.',
     gallery: [
       {
-        src: '',
+        src: foxOne,
         alt: 'The Fox safari tent deck at golden hour with countryside views',
       },
-      { src: '', alt: 'Interior lounge area of The Fox tent with layered textiles' },
-      { src: '', alt: 'King bed inside The Fox safari tent with soft lantern light' },
+      { src: foxThree, alt: 'Interior lounge area of The Fox tent with layered textiles' },
+      { src: foxTwo, alt: 'King bed inside The Fox safari tent with soft lantern light' },
     ],
     cardFeatures: [
       { iconId: 'deck', label: 'PRIVATE DECK' },
@@ -118,9 +128,9 @@ export const STAYS_CATALOG = [
     dreamLong:
       'The Hare is our quiet corner: smaller footprint, same handcrafted detail. Shelves of field guides, a stove that ticks through the evening, and windows that frame hedgerows. Ideal for solo travellers or couples who travel light.',
     gallery: [
-      { src: '', alt: "Exterior of The Hare shepherd's hut nestled beside hedgerow" },
-      { src: '', alt: 'Reading nook with cushions and lamp inside The Hare hut' },
-      { src: '', alt: 'Compact ensuite shower detail in The Hare hut' },
+      { src: hareOne, alt: "Exterior of The Hare shepherd's hut nestled beside hedgerow" },
+      { src: hareThree, alt: 'Reading nook with cushions and lamp inside The Hare hut' },
+      { src: hareTwo, alt: 'Compact ensuite shower detail in The Hare hut' },
     ],
     cardFeatures: [
       { iconId: 'nook', label: 'READING NOOK' },

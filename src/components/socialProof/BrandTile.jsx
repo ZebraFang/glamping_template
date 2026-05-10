@@ -1,4 +1,5 @@
 import styles from './BrandTile.module.css'
+import breakfastImage from '../../images/breakfast-hamper-two.jpg'
 
 /**
  * Visual anchor in the review masonry — breakfast / livestock imagery slots in here later.
@@ -7,8 +8,8 @@ import styles from './BrandTile.module.css'
  * @param {{ imageSrc?: string; imageAlt?: string; caption?: string }} props
  */
 export function BrandTile({
-  imageSrc,
-  imageAlt = '',
+  imageSrc = breakfastImage,
+  imageAlt = "Breakfast hamper and farm produce",
   caption = 'Farm breakfast hamper — sourdough, eggs, and whatever the hedgerow is offering.',
 }) {
   const hasImage = Boolean(imageSrc)
@@ -28,7 +29,7 @@ export function BrandTile({
           />
         ) : (
           <div className={styles.placeholder} role="img" aria-label="Photography placeholder: breakfast hamper and farm produce">
-            <p className={styles.mediaCue}>IMG · Breakfast hamper · Lambs in pasture</p>
+            <p className={styles.mediaCue}>Breakfast hamper</p>
           </div>
         )}
       </div>
