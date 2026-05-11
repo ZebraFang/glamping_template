@@ -3,14 +3,14 @@
  */
 
 import peacockOne from '../images/the-peacock.png'
-import peacockTwo from '../images/Wooden-hot-tub.jpg'
-import peacockThree from '../images/shepherd-hut.jpg'
-import foxOne from '../images/safari-hut.jpg'
-import foxTwo from '../images/safari-tent-internal.jpg'
-import foxThree from '../images/safari-hut-two.jpg'
-import hareOne from '../images/Wooden-cottage.jpg'
-import hareTwo from '../images/Wooden-cottage-internal.jpg'
-import hareThree from '../images/reading-nook.jpg'
+import peacockTwo from '../images/Wooden-hot-tub.avif'
+import peacockThree from '../images/shepherd-hut.avif'
+import foxOne from '../images/safari-hut.avif'
+import foxTwo from '../images/safari-tent-internal.avif'
+import foxThree from '../images/safari-hut-two.avif'
+import hareOne from '../images/Wooden-cottage.avif'
+import hareTwo from '../images/Wooden-cottage-internal.avif'
+import hareThree from '../images/reading-nook.avif'
 
 /** @typedef {{ src: string; alt: string; thumbSrc?: string }} StayGallerySlide */
 

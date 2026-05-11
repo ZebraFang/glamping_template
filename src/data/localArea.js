@@ -57,7 +57,7 @@ export const ACTIVITIES = [
     action: { label: 'VIEW TRAIL MAP →', href: '#map', external: false },
     featured: true,
     mediaCue: 'IMG · Drone · Farm trails & dry-stone walls',
-    imageUrl: 'src/images/golden-hour-yorkshire.jpg',
+    imageUrl: 'src/images/golden-hour-yorkshire.avif',
   },
   {
     id: 'durham-ox',
@@ -91,7 +91,7 @@ export const ACTIVITIES = [
     action: { label: 'READ FARM SEASONS →', href: '#farm', external: false },
     featured: true,
     mediaCue: 'IMG · Lamb close-up · Morning mist',
-    imageUrl: 'src/images/lambs.png',
+    imageUrl: 'src/images/lambs.avif',
   },
   {
     id: 'bluebell-wood',
@@ -102,7 +102,7 @@ export const ACTIVITIES = [
     action: { label: 'OPEN ROUTE PDF →', href: '#map', external: false },
     featured: false,
     mediaCue: 'IMG · Bluebell carpet · Oak trunks',
-    imageUrl: 'src/images/bluebells.png',
+    imageUrl: 'src/images/bluebells.avif',
   },
   {
     id: 'breakfast-hamper',
@@ -113,7 +113,7 @@ export const ACTIVITIES = [
     action: { label: "SEE WHAT'S INSIDE →", href: '#stays', external: false },
     featured: false,
     mediaCue: 'IMG · Hamper · Linen & preserves',
-    imageUrl: 'src/images/breakfast-hamper.png',
+    imageUrl: 'src/images/breakfast-hamper.avif',
   },
   {
     id: 'wildflower-meadow',
@@ -124,7 +124,7 @@ export const ACTIVITIES = [
     action: { label: 'VIEW MEADOW MAP →', href: '#map', external: false },
     featured: false,
     mediaCue: 'IMG · Meadow · Golden hour',
-    imageUrl: 'src/images/wildflower-meadow.png',
+    imageUrl: 'src/images/wildflower-meadow.avif',
   },
   {
     id: 'dusk-footpath',
@@ -146,7 +146,7 @@ export const ACTIVITIES = [
     action: { label: 'DIRECTIONS →', href: 'https://www.google.com/maps', external: true },
     featured: false,
     mediaCue: 'IMG · Honesty stall · Jars & greens',
-    imageUrl: 'src/images/veg-table.png',
+    imageUrl: 'src/images/veg-table.avif',
   },
   {
     id: 'winter-stargaze',
@@ -157,7 +157,7 @@ export const ACTIVITIES = [
     action: { label: 'DARK-SKY TIPS →', href: '#faq', external: false },
     featured: false,
     mediaCue: 'IMG · Frosty field · Chimney smoke',
-    imageUrl: 'src/images/Yorkshire-vales.png',
+    imageUrl: 'src/images/Yorkshire-vales.avif',
   },
 ]
 

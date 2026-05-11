@@ -1,5 +1,5 @@
 import styles from './BrandTile.module.css'
-import breakfastImage from '../../images/breakfast-hamper-two.jpg'
+import breakfastImage from '../../images/breakfast-hamper-two.avif'
 
 /**
  * Visual anchor in the review masonry — breakfast / livestock imagery slots in here later.
