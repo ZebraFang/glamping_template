@@ -1,5 +1,7 @@
 /**
  * Farm & local area content — pillars, activities, and seasonal calendar copy.
+ *
+ * Activity imagery lives under `public/images/` — use root-relative URLs `/images/filename.ext`.
  */
 
 /** @typedef {'hiking' | 'dining' | 'farmLife'} PillarId */
@@ -57,7 +59,7 @@ export const ACTIVITIES = [
     action: { label: 'VIEW TRAIL MAP →', href: '#map', external: false },
     featured: true,
     mediaCue: 'IMG · Drone · Farm trails & dry-stone walls',
-    imageUrl: 'src/images/golden-hour-yorkshire.avif',
+    imageUrl: '/images/golden-hour-yorkshire.avif',
   },
   {
     id: 'durham-ox',
@@ -74,7 +76,7 @@ export const ACTIVITIES = [
     action: { label: 'VIEW WALK TO PUB →', href: 'https://www.google.com/maps', external: true },
     featured: true,
     mediaCue: 'IMG · Pub interior · Pie & hearth',
-    imageUrl: 'src/images/durham-ox-pub.png',
+    imageUrl: '/images/durham-ox-pub.png',
   },
   {
     id: 'lambing-spring',
@@ -91,7 +93,7 @@ export const ACTIVITIES = [
     action: { label: 'READ FARM SEASONS →', href: '#farm', external: false },
     featured: true,
     mediaCue: 'IMG · Lamb close-up · Morning mist',
-    imageUrl: 'src/images/lambs.avif',
+    imageUrl: '/images/lambs.avif',
   },
   {
     id: 'bluebell-wood',
@@ -102,7 +104,7 @@ export const ACTIVITIES = [
     action: { label: 'OPEN ROUTE PDF →', href: '#map', external: false },
     featured: false,
     mediaCue: 'IMG · Bluebell carpet · Oak trunks',
-    imageUrl: 'src/images/bluebells.avif',
+    imageUrl: '/images/bluebells.avif',
   },
   {
     id: 'breakfast-hamper',
@@ -113,7 +115,7 @@ export const ACTIVITIES = [
     action: { label: "SEE WHAT'S INSIDE →", href: '#stays', external: false },
     featured: false,
     mediaCue: 'IMG · Hamper · Linen & preserves',
-    imageUrl: 'src/images/breakfast-hamper.avif',
+    imageUrl: '/images/breakfast-hamper.avif',
   },
   {
     id: 'wildflower-meadow',
@@ -124,7 +126,7 @@ export const ACTIVITIES = [
     action: { label: 'VIEW MEADOW MAP →', href: '#map', external: false },
     featured: false,
     mediaCue: 'IMG · Meadow · Golden hour',
-    imageUrl: 'src/images/wildflower-meadow.avif',
+    imageUrl: '/images/wildflower-meadow.avif',
   },
   {
     id: 'dusk-footpath',
@@ -135,7 +137,7 @@ export const ACTIVITIES = [
     action: { label: 'VIEW EVENING LOOP →', href: '#map', external: false },
     featured: false,
     mediaCue: 'IMG · Footpath · Dusk silhouette',
-    imageUrl: 'src/images/dusty-footpath.avif',
+    imageUrl: '/images/dusty-footpath.avif',
   },
   {
     id: 'village-shop',
@@ -146,7 +148,7 @@ export const ACTIVITIES = [
     action: { label: 'DIRECTIONS →', href: 'https://www.google.com/maps', external: true },
     featured: false,
     mediaCue: 'IMG · Honesty stall · Jars & greens',
-    imageUrl: 'src/images/veg-table.avif',
+    imageUrl: '/images/veg-table.avif',
   },
   {
     id: 'winter-stargaze',
@@ -157,7 +159,7 @@ export const ACTIVITIES = [
     action: { label: 'DARK-SKY TIPS →', href: '#faq', external: false },
     featured: false,
     mediaCue: 'IMG · Frosty field · Chimney smoke',
-    imageUrl: 'src/images/Yorkshire-vales.avif',
+    imageUrl: '/images/Yorkshire-vales.avif',
   },
 ]
 

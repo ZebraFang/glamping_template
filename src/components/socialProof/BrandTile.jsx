@@ -1,5 +1,6 @@
 import styles from './BrandTile.module.css'
-import breakfastImage from '../../images/breakfast-hamper-two.avif'
+
+const DEFAULT_BRAND_IMAGE = '/images/breakfast-hamper-two.avif'
 
 /**
  * Visual anchor in the review masonry — breakfast / livestock imagery slots in here later.
@@ -8,7 +9,7 @@ import breakfastImage from '../../images/breakfast-hamper-two.avif'
  * @param {{ imageSrc?: string; imageAlt?: string; caption?: string }} props
  */
 export function BrandTile({
-  imageSrc = breakfastImage,
+  imageSrc = DEFAULT_BRAND_IMAGE,
   imageAlt = "Breakfast hamper and farm produce",
   caption = 'Farm breakfast hamper — sourdough, eggs, and whatever the hedgerow is offering.',
 }) {

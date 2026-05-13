@@ -13,8 +13,9 @@ function IconClose() {
 
 /**
  * Full-viewport booking surface for narrow viewports (portaled to `document.body`).
+ * @param {{ open: boolean; onClose: () => void; booking: object; dialogId: string; onConfirm?: () => void }} props
  */
-export function BookingSheetMobile({ open, onClose, booking, dialogId }) {
+export function BookingSheetMobile({ open, onClose, booking, dialogId, onConfirm }) {
   const closeBtnRef = useRef(null)
   const titleId = useId()
   const hadOpenRef = useRef(false)
@@ -67,7 +68,7 @@ export function BookingSheetMobile({ open, onClose, booking, dialogId }) {
         <BookingFlowBody booking={booking} variant="sheet" />
       </div>
       <div className={styles.sheetFooter}>
-        <BookingFlowFooter booking={booking} />
+        <BookingFlowFooter booking={booking} onConfirm={onConfirm} />
       </div>
     </div>,
     document.body,

@@ -1,6 +1,5 @@
 import { useEffect, useId, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
-import farmWalksMapImage from '../images/the-lead-gen-map.png'
 import styles from './LeadDemoToast.module.css'
 
 function IconClose() {
@@ -80,7 +79,7 @@ export function LeadDemoToast({ onDismiss }) {
           <div className={styles.media}>
             <img
               className={styles.mediaImg}
-              src={farmWalksMapImage}
+              src="/images/the-lead-gen-map.png"
               alt="Hand-drawn illustrated map of footpaths and farm walks around Hollowfield"
               width={800}
               height={500}

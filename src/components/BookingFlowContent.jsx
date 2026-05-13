@@ -258,8 +258,11 @@ export function BookingFlowBody({ booking, variant = 'sheet' }) {
   )
 }
 
-/** Summary + confirm — sticky on mobile sheet, end of stack on desktop popovers */
-export function BookingFlowFooter({ booking }) {
+/**
+ * Summary + confirm — sticky on mobile sheet, end of stack on desktop popovers.
+ * @param {{ booking: object; onConfirm?: () => void }} props
+ */
+export function BookingFlowFooter({ booking, onConfirm }) {
   const selected = HERO_STAYS.find((s) => s.id === booking.state.selectedStayId) ?? HERO_STAYS[0]
   return (
     <footer className={styles.footer}>
@@ -267,7 +270,12 @@ export function BookingFlowFooter({ booking }) {
         <span className={styles.summaryRate}>{selected.priceLabel}</span>
         <span className={styles.summaryLine}>{booking.summary.nightsLabel}</span>
       </div>
-      <button type="button" className={styles.confirmBtn} disabled={!booking.canConfirm}>
+      <button
+        type="button"
+        className={styles.confirmBtn}
+        disabled={!booking.canConfirm}
+        onClick={() => onConfirm?.()}
+      >
         Confirm
       </button>
     </footer>

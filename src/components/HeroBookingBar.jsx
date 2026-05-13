@@ -40,6 +40,7 @@ export function HeroBookingBar({ bookingShell }) {
     setActiveDesktopStep,
     desktopValidationMessage,
     setDesktopValidationMessage,
+    closeBookingPanels,
   } = bookingShell
   const rootRef = useRef(null)
   const panelBaseId = useId()
@@ -67,9 +68,15 @@ export function HeroBookingBar({ bookingShell }) {
     setMobileOpen(true)
   }
 
+  const finalizeBookingDemo = () => {
+    booking.actions.confirmSelection()
+    closeBookingPanels()
+    setDesktopValidationMessage('Selection saved (demo)')
+  }
+
   const onDesktopCtaSubmit = () => {
     if (booking.canConfirm) {
-      setDesktopValidationMessage('Ready to confirm (demo mode).')
+      finalizeBookingDemo()
       return
     }
     const missing = booking.firstIncompleteStep || 'dates'
@@ -166,7 +173,7 @@ export function HeroBookingBar({ bookingShell }) {
         </button>
       </div>
 
-      {isDesktop && desktopValidationMessage ? (
+      {desktopValidationMessage ? (
         <p className={styles.desktopValidation} role="status">
           {desktopValidationMessage}
         </p>
@@ -181,6 +188,7 @@ export function HeroBookingBar({ bookingShell }) {
           }}
           booking={booking}
           dialogId={sheetDialogId}
+          onConfirm={finalizeBookingDemo}
         />
       ) : null}
     </div>

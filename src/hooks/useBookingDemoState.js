@@ -38,6 +38,15 @@ function diffNights(start, end) {
   return Math.max(0, Math.round((end - start) / msPerDay))
 }
 
+/** ISO timestamp from persisted draft; invalid values become null */
+function parseConfirmedAt(raw) {
+  if (raw == null || raw === '') return null
+  if (typeof raw !== 'string') return null
+  const t = Date.parse(raw)
+  if (Number.isNaN(t)) return null
+  return raw
+}
+
 function getInitialState() {
   return {
     selectedStayId: HERO_STAYS[0]?.id ?? '',
@@ -49,6 +58,7 @@ function getInitialState() {
       dogs: 0,
     },
     monthCursor: getCurrentMonthStart(),
+    confirmedAt: null,
   }
 }
 
@@ -72,6 +82,7 @@ function sanitizeDraft(draft) {
       dogs: safeDogs,
     },
     monthCursor: clampMonthToCurrent((draft.monthCursor && fromIsoDate(draft.monthCursor)) || getCurrentMonthStart()),
+    confirmedAt: parseConfirmedAt(draft.confirmedAt),
   }
 }
 
@@ -105,6 +116,7 @@ export function useBookingDemoState() {
       checkOut: state.checkOut ? toIsoDate(state.checkOut) : null,
       guests: state.guests,
       monthCursor: toIsoDate(new Date(state.monthCursor.getFullYear(), state.monthCursor.getMonth(), 1)),
+      confirmedAt: state.confirmedAt,
     }
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(payload))
   }, [state])
@@ -134,7 +146,11 @@ export function useBookingDemoState() {
 
   const actions = {
     setStay(stayId) {
-      setState((prev) => ({ ...prev, selectedStayId: stayId }))
+      setState((prev) => ({ ...prev, selectedStayId: stayId, confirmedAt: null }))
+    },
+
+    confirmSelection() {
+      setState((prev) => ({ ...prev, confirmedAt: new Date().toISOString() }))
     },
 
     setMonthCursor(nextMonth) {
@@ -157,12 +173,12 @@ export function useBookingDemoState() {
         const checkIn = prev.checkIn
         const checkOut = prev.checkOut
         if (!checkIn || checkOut) {
-          return { ...prev, checkIn: date, checkOut: null }
+          return { ...prev, checkIn: date, checkOut: null, confirmedAt: null }
         }
         if (date <= checkIn) {
-          return { ...prev, checkIn: date, checkOut: null }
+          return { ...prev, checkIn: date, checkOut: null, confirmedAt: null }
         }
-        return { ...prev, checkOut: date }
+        return { ...prev, checkOut: date, confirmedAt: null }
       })
     },
 
@@ -174,7 +190,7 @@ export function useBookingDemoState() {
         if (key === 'dogs') next.dogs = Math.max(0, Math.min(bookingGateway.maxDogs, next.dogs + delta))
         const people = next.adults + next.children
         if (people > bookingGateway.maxGuests) return prev
-        return { ...prev, guests: next }
+        return { ...prev, guests: next, confirmedAt: null }
       })
     },
 

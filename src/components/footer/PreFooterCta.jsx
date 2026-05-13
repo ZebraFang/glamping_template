@@ -1,5 +1,4 @@
 import { PRE_FOOTER } from '../../data/footerContent.js'
-import preFooterPhoto from '../../images/stars.jpg'
 import styles from './PreFooterCta.module.css'
 
 const SCROLL_THEN_OPEN_MS = 480
@@ -24,7 +23,7 @@ export function PreFooterCta({ bookingShell }) {
         <div className={styles.media}>
           <img
             className={styles.photo}
-            src={preFooterPhoto}
+            src="/images/stars.jpg"
             alt="Golden-hour light over the Yorkshire countryside near Hollowfield"
             width={PRE_FOOTER_IMG_DIM.w}
             height={PRE_FOOTER_IMG_DIM.h}

@@ -1,13 +1,8 @@
 /**
  * Footer & pre-footer copy — centralised for easy updates.
  * Replace `#` hrefs when real pages exist.
+ * Instagram tiles use `/images/*` (files in `public/images/`).
  */
-import igCoupleHappy from '../images/insta-couple-happy.jpg'
-import igDeckHappy from '../images/insta-deck-happy.jpg'
-import igDogHay from '../images/insta-dog-hay.jpg'
-import igHappyGoat from '../images/insta-happy-goat.jpg'
-import igWine from '../images/insta-wine.jpg'
-import igYurt from '../images/insta-yurt.jpg'
 import { FARM_DIRECTIONS } from './farmMap.js'
 
 /** Point every tile at your real Instagram profile (or remove `INSTAGRAM_PROFILE_URL` usage below). */
@@ -86,45 +81,44 @@ export const FARM_CLUB = {
 /**
  * Instagram strip — static tiles until you wire Meta Graph API or an embed.
  *
- * How to change photos: import from `src/images/` (Vite resolves hashed URLs) and set `imageSrc`.
- * Or put files in `/public` and use `imageSrc: '/your-file.jpg'` (no import).
+ * Use `imageSrc: '/images/your-file.jpg'` — assets live in `public/images/`.
  *
  * How to change links: edit {@link INSTAGRAM_PROFILE_URL} or set per-tile `href` (e.g. deep-link a post).
  */
 export const INSTAGRAM_PLACEHOLDERS = [
   {
     id: 'ig-1',
-    imageSrc: igHappyGoat,
+    imageSrc: '/images/insta-happy-goat.jpg',
     href: INSTAGRAM_PROFILE_URL,
     alt: 'Goat on the farm at Hollowfield',
   },
   {
     id: 'ig-2',
-    imageSrc: igWine,
+    imageSrc: '/images/insta-wine.jpg',
     href: INSTAGRAM_PROFILE_URL,
     alt: 'Relaxing with a drink after a day in the Yorkshire countryside',
   },
   {
     id: 'ig-3',
-    imageSrc: igYurt,
+    imageSrc: '/images/insta-yurt.jpg',
     href: INSTAGRAM_PROFILE_URL,
     alt: 'Glamping accommodation nestled in the landscape',
   },
   {
     id: 'ig-4',
-    imageSrc: igDeckHappy,
+    imageSrc: '/images/insta-deck-happy.jpg',
     href: INSTAGRAM_PROFILE_URL,
     alt: 'Guests enjoying morning coffee on the deck',
   },
   {
     id: 'ig-5',
-    imageSrc: igCoupleHappy,
+    imageSrc: '/images/insta-couple-happy.jpg',
     href: INSTAGRAM_PROFILE_URL,
     alt: 'Guests smiling outside their stay',
   },
   {
     id: 'ig-6',
-    imageSrc: igDogHay,
+    imageSrc: '/images/insta-dog-hay.jpg',
     href: INSTAGRAM_PROFILE_URL,
     alt: 'Dog beside hay bales on the farm',
   },

@@ -1,7 +1,6 @@
 import styles from './Hero.module.css'
 import { HeroBookingBar } from './HeroBookingBar.jsx'
 import { MediaSlot } from './farm/MediaSlot.jsx'
-import heroImage from '../images/golden-hour-yorkshire-two.avif'
 
 /** 
  * Marketing hero: forest field, headline, lead link, and booking strip.
@@ -15,14 +14,14 @@ export function Hero({ bookingShell }) {
       {/* Reserved full-bleed media layer — fixed min-height avoids CLS when a photo is added */}
       {/* Future: full-bleed <img> or <picture> with explicit width/height + object-fit: cover */}
       <div className={styles.heroMedia}>
-  <MediaSlot
-    variant="hero"
-    fill
-    imageSrc={heroImage}
-    imageAlt="Golden-hour view across the Yorkshire Vales at Hollowfield"
-    mediaCue="IMG / Hero · Smoke from chimney · Golden hour"
-  />
-</div>
+        <MediaSlot
+          variant="hero"
+          fill
+          imageSrc="/images/golden-hour-yorkshire-two.avif"
+          imageAlt="Golden-hour view across the Yorkshire Vales at Hollowfield"
+          mediaCue="IMG / Hero · Smoke from chimney · Golden hour"
+        />
+      </div>
 
       <div className={styles.heroScrim} aria-hidden />
 

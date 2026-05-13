@@ -17,6 +17,7 @@ import styles from './MediaSlot.module.css'
  */
 export function MediaSlot({ variant, imageSrc, imageAlt = '', mediaCue, className, fill = false }) {
   const hasImage = Boolean(imageSrc)
+
   /** Explicit dimensions match aspect ratios for layout stability when `src` is populated. */
   const dim =
     variant === 'featured'
