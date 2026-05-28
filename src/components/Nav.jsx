@@ -45,11 +45,17 @@ export function Nav({
   onDemoLead,
 }) {
   const [open, setOpen] = useState(false)
+  const [portalReady, setPortalReady] = useState(false)
   const menuButtonRef = useRef(null)
   const closeButtonRef = useRef(null)
   const hadOpenedRef = useRef(false)
   const menuId = useId()
   const dialogLabelId = useId()
+
+  // Portal target exists only in the browser; defer until after hydration.
+  useEffect(() => {
+    setPortalReady(true) // eslint-disable-line react-hooks/set-state-in-effect -- client-only portal
+  }, [])
 
   useEffect(() => {
     const mq = window.matchMedia(`(min-width: ${NAV_DESKTOP_MIN_PX}px)`)
@@ -99,49 +105,51 @@ export function Nav({
 
   const showDemo = typeof onDemoLead === 'function'
 
-  const overlay = createPortal(
-    <div
-      id={menuId}
-      className={`${styles.overlay} ${open ? styles.overlayOpen : ''}`}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby={dialogLabelId}
-      aria-hidden={!open}
-    >
-      <div className={styles.overlayPanel}>
-        <div className={styles.overlayInner}>
-          {showDemo ? <DemoChipRow onDemoLead={onDemoLead} /> : null}
-          <div className={styles.overlayHead}>
-            <p id={dialogLabelId} className={styles.menuBrand}>
-              {brandName}
-            </p>
-            <button
-              ref={closeButtonRef}
-              type="button"
-              className={styles.closeBtn}
-              onClick={close}
-              aria-label="Close menu"
-            >
-              <IconClose />
-            </button>
+  const overlay =
+    portalReady &&
+    createPortal(
+      <div
+        id={menuId}
+        className={`${styles.overlay} ${open ? styles.overlayOpen : ''}`}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={dialogLabelId}
+        aria-hidden={!open}
+      >
+        <div className={styles.overlayPanel}>
+          <div className={styles.overlayInner}>
+            {showDemo ? <DemoChipRow onDemoLead={onDemoLead} /> : null}
+            <div className={styles.overlayHead}>
+              <p id={dialogLabelId} className={styles.menuBrand}>
+                {brandName}
+              </p>
+              <button
+                ref={closeButtonRef}
+                type="button"
+                className={styles.closeBtn}
+                onClick={close}
+                aria-label="Close menu"
+              >
+                <IconClose />
+              </button>
+            </div>
+            <nav aria-label="Primary">
+              <ul className={styles.navList}>
+                {links.map(({ href, label, cta }) => (
+                  <li key={href} className={cta ? styles.navListCtaItem : undefined}>
+                    <a href={href} className={cta ? styles.navCta : undefined} onClick={close}>
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <footer className={styles.menuFoot}>{menuFooter}</footer>
           </div>
-          <nav aria-label="Primary">
-            <ul className={styles.navList}>
-              {links.map(({ href, label, cta }) => (
-                <li key={href} className={cta ? styles.navListCtaItem : undefined}>
-                  <a href={href} className={cta ? styles.navCta : undefined} onClick={close}>
-                    {label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <footer className={styles.menuFoot}>{menuFooter}</footer>
         </div>
-      </div>
-    </div>,
-    document.body,
-  )
+      </div>,
+      document.body,
+    )
 
   return (
     <>

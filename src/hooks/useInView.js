@@ -14,10 +14,17 @@ function prefersReducedMotion() {
 export function useInView(options = {}) {
   const { rootMargin = '0px 0px -8% 0px' } = options
   const ref = useRef(null)
-  const [inView, setInView] = useState(prefersReducedMotion)
+  const [inView, setInView] = useState(false)
 
   useLayoutEffect(() => {
-    if (typeof window === 'undefined' || inView) return undefined
+    if (typeof window === 'undefined') return undefined
+
+    if (prefersReducedMotion()) {
+      setInView(true) // eslint-disable-line react-hooks/set-state-in-effect -- SSR/hydration sync
+      return undefined
+    }
+
+    if (inView) return undefined
 
     const el = ref.current
     if (!el) return undefined
