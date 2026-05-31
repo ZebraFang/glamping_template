@@ -9,8 +9,12 @@
   display: flex;
   flex-direction: column;
   background: var(--color-parchment);
-  padding: max(10px, env(safe-area-inset-top)) env(safe-area-inset-right)
-    max(10px, env(safe-area-inset-bottom)) env(safe-area-inset-left);
+  /* safe-area alone is 0 in most emulators / non-notched phones — always inset content */
+  padding:
+    max(var(--space-3), env(safe-area-inset-top, 0px))
+    max(var(--space-5), env(safe-area-inset-right, 0px))
+    max(var(--space-3), env(safe-area-inset-bottom, 0px))
+    max(var(--space-5), env(safe-area-inset-left, 0px));
 }
 
 .header {
