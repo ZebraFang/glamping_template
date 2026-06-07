@@ -36,7 +36,7 @@ export const STAYS_CATALOG = [
       'Wake to birdsong and oak-panelled warmth. The Peacock was crafted for slow mornings: stove-lit corners, a deep soak under open sky, and nothing but pasture beyond your deck. This is the hut guests book twice.',
     gallery: [
       {
-        src: '/images/the-peacock.png',
+        src: '/images/the-peacock.avif',
         alt: "Interior view of The Peacock shepherd's hut at sunset with stove glow",
       },
       {
