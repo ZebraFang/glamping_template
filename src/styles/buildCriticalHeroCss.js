@@ -1,0 +1,11 @@
+/**
+ * Inlined above-the-fold CSS — paints `#hero-heading` before the async app stylesheet.
+ * Uses stable IDs/selectors (not CSS module hashes).
+ *
+ * @param {string} fontNormalUrl
+ * @param {string} fontItalicUrl
+ * @returns {string}
+ */
+export function buildCriticalHeroCss(fontNormalUrl, fontItalicUrl) {
+  return `@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:500;font-display:swap;src:url('${fontNormalUrl}') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:500;font-display:swap;src:url('${fontItalicUrl}') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}:root{--color-forest:#1b2621;--color-forest-soft:#2a3530;--color-terracotta:#c66a3f;--color-parchment:#f1ece4;--layout-content-max:1200px;--space-4:16px;--space-5:20px;--space-6:24px;--font-display:'Cormorant Garamond',Georgia,serif}*,*::before,*::after{box-sizing:border-box}body{margin:0}.shell{width:100%;min-height:100dvh;position:relative}section[aria-labelledby="hero-heading"]{position:relative;isolation:isolate;min-height:100dvh;display:flex;flex-direction:column;color:var(--color-parchment);background:var(--color-forest);background-image:linear-gradient(180deg,var(--color-forest-soft) 0%,var(--color-forest) 100%)}#hero-inner{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;width:100%;max-width:var(--layout-content-max);margin:0 auto;padding:112px var(--space-5) 0;min-height:0}#hero-heading{margin:0;max-width:14ch;font-family:var(--font-display);font-size:clamp(2.35rem,9.5vw,4.5rem);font-weight:500;line-height:1.05;letter-spacing:-0.03em;color:var(--color-parchment)}#hero-heading span{color:var(--color-terracotta);font-style:italic;font-weight:500}@media(min-width:900px){section[aria-labelledby="hero-heading"]{min-height:min(92dvh,880px)}#hero-inner{padding-top:128px;padding-left:var(--space-6);padding-right:var(--space-6)}#hero-heading{max-width:13ch}}`
+}

@@ -48,7 +48,7 @@ export function MediaSlot({
           alt={imageAlt}
           width={dim.w}
           height={dim.h}
-          fetchPriority={variant === 'hero' ? 'high' : 'auto'}
+          fetchPriority="auto"
           loading={variant === 'hero' ? 'eager' : 'lazy'}
           decoding="async"
         />

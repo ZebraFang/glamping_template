@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import './styles.css'
 import { Nav } from './components/Nav.jsx'
 import { Hero } from './components/Hero.jsx'
 import { useBookingShell } from './hooks/useBookingShell.js'

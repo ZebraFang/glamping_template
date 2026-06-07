@@ -29,7 +29,7 @@ export function Hero({ bookingShell }) {
 
       <div className={styles.heroScrim} aria-hidden />
 
-      <div className={styles.heroInner}>
+      <div id="hero-inner" className={styles.heroInner}>
         <div className={styles.heroCopyBlock}>
           <div className={styles.heroStack}>
             <p className={styles.eyebrow}>
