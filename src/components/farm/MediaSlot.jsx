@@ -9,13 +9,24 @@ import styles from './MediaSlot.module.css'
  * @param {{
  *   variant: MediaVariant;
  *   imageSrc?: string;
+ *   imageSrcSet?: string;
+ *   imageSizes?: string;
  *   imageAlt?: string;
  *   mediaCue: string;
  *   className?: string;
  *   fill?: boolean;
  * }} props
  */
-export function MediaSlot({ variant, imageSrc, imageAlt = '', mediaCue, className, fill = false }) {
+export function MediaSlot({
+  variant,
+  imageSrc,
+  imageSrcSet,
+  imageSizes,
+  imageAlt = '',
+  mediaCue,
+  className,
+  fill = false,
+}) {
   const hasImage = Boolean(imageSrc)
 
   /** Explicit dimensions match aspect ratios for layout stability when `src` is populated. */
@@ -23,7 +34,7 @@ export function MediaSlot({ variant, imageSrc, imageAlt = '', mediaCue, classNam
     variant === 'featured'
       ? { w: 800, h: 600 }
       : variant === 'hero'
-        ? { w: 1600, h: 1000 }
+        ? { w: 1920, h: 2088 }
         : { w: 480, h: 480 }
 
   return (
@@ -32,6 +43,8 @@ export function MediaSlot({ variant, imageSrc, imageAlt = '', mediaCue, classNam
         <img
           className={styles.img}
           src={imageSrc}
+          srcSet={imageSrcSet}
+          sizes={imageSizes}
           alt={imageAlt}
           width={dim.w}
           height={dim.h}

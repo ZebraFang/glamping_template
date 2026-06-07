@@ -1,4 +1,5 @@
 import styles from './Hero.module.css'
+import { HERO_IMAGE, buildHeroSrcSet } from '../data/heroImage.js'
 import { HeroBookingBar } from './HeroBookingBar.jsx'
 import { HeroTrustStrip } from './HeroTrustStrip.jsx'
 import { MediaSlot } from './farm/MediaSlot.jsx'
@@ -18,8 +19,10 @@ export function Hero({ bookingShell }) {
         <MediaSlot
           variant="hero"
           fill
-          imageSrc="/images/golden-hour-yorkshire-two.avif"
-          imageAlt="Golden-hour view across the Yorkshire Vales at Hollowfield"
+          imageSrc={HERO_IMAGE.src}
+          imageSrcSet={buildHeroSrcSet()}
+          imageSizes={HERO_IMAGE.sizes}
+          imageAlt={HERO_IMAGE.alt}
           mediaCue="IMG / Hero · Smoke from chimney · Golden hour"
         />
       </div>

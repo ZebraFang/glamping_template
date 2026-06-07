@@ -1,4 +1,9 @@
 ---
+import {
+  HERO_IMAGE,
+  buildHeroPreloadSrcSet,
+} from '../data/heroImage.js'
+
 interface Props {
   title?: string
 }
@@ -6,6 +11,7 @@ interface Props {
 const { title = 'Hollowfield' } = Astro.props
 const fontsHref =
   'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap'
+const heroPreloadSrcSet = buildHeroPreloadSrcSet()
 ---
 
 <!doctype html>
@@ -15,6 +21,14 @@ const fontsHref =
     <link rel="icon" type="image/svg+xml" href="/hollowfield-favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
+    <link
+      rel="preload"
+      as="image"
+      href={HERO_IMAGE.preloadHref}
+      imagesrcset={heroPreloadSrcSet}
+      imagesizes={HERO_IMAGE.sizes}
+      fetchpriority="high"
+    />
     <link rel="preload" as="style" href={fontsHref} />
     <link rel="stylesheet" media="print" onload="this.media='all'" href={fontsHref} />
     <noscript>
