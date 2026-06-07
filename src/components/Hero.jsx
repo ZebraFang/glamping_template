@@ -1,5 +1,6 @@
 import styles from './Hero.module.css'
 import { HeroBookingBar } from './HeroBookingBar.jsx'
+import { HeroTrustStrip } from './HeroTrustStrip.jsx'
 import { MediaSlot } from './farm/MediaSlot.jsx'
 
 /** 
@@ -43,6 +44,8 @@ export function Hero({ bookingShell }) {
             <p className={styles.intro}>
               Trade screens for skylines. Three nights on a real Yorkshire farm — yours to wake to.
             </p>
+
+            <HeroTrustStrip />
           </div>
 
           <a className={styles.leadLink} href="#faq">
